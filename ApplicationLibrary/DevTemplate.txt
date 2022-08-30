@@ -1,0 +1,41 @@
+﻿'###################################################Function Header########################################################################################################
+'Target Application            			- Vehicle
+'Function Name     						- AssetEngineModelLOVGUI
+'Node									- Asset Engine Model LOV
+'Purpose								- Asset Engine Model LOV Screen GUI
+'BVT									- BVT Vehicle 1051.2003.2010.2196
+'owner									- Imran
+'#############################################################Driver Header################################################################################################
+Function LoginWinWeb(strBrowserType,strApplicationURL,strUserName,strPassword)
+
+  'Launch Application
+  Call LaunchApplication(strBrowserType,strApplicationURL)
+  
+  If FindObject(Browser(Environment("brEmployee_Home_Page")).Page(Environment("pgEmployee_Home_Page")).Frame("name:=idFrameBanner").WebElement("html id:=lblInfo")) Then
+  	UserName=Browser(Environment("brEmployee_Home_Page")).Page(Environment("pgEmployee_Home_Page")).Frame("name:=idFrameBanner").WebElement("html id:=lblInfo").GetROProperty("innertext")
+  	Call GetApplicationModuleNames(Browser(Environment("brEmployee_Home_Page")).Page(Environment("pgEmployee_Home_Page")).Frame("name:=idFrameBanner"),"Enter Valid user details and click on Login Button")
+
+  	Reporter.ReportEvent micPass,"Verify User Login","User':"& UserName &"' Login Successful"
+  Else
+   Reporter.ReportEvent micFail,"Verify User Login","Login Failed"
+  End If
+
+End Function
+'##############################################################################################################################################
+'Target Application            			- WinWebLogout
+'Function Name     						- WinWebLogout
+'Purpose								- Click on Logout Button in Application and Verify Successful Logout
+'Author									-Imran Khan
+'##############################################################################################################################################
+Function WinWebLogout()
+	'Click on Logout Button
+	Call ClickObject(Browser(Environment("brEmployee_Home_Page")).Page(Environment("pgEmployee_Home_Page")).Link(Environment("lnkLogout")))
+	
+	If FindObject(Browser(Environment("brLogin")).Page(Environment("pgLogin")).WebElement(Environment("weWebLogin"))) Then
+		Call GetApplicationModuleNames(Browser(Environment("brLogin")).Page(Environment("pgLogin")),"Click on Logout Link")
+		Reporter.ReportEvent micPass,"Click on Logout Link and Verify Successful Application Logout","Logout Successful"
+	Else
+	 Reporter.ReportEvent micFail,"Click on Logout Link and Verify Successful Application Logout","Application Failed to Logout"
+	End If
+	
+End Function

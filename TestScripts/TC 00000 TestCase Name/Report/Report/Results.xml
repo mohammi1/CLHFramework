@@ -1,0 +1,242 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="Eastern Standard Time">
+<General productName="Micro Focus Unified Functional Testing" productVer="15.0.2" os="" host="MSAZQAVRUNT05"><DocLocation><![CDATA[\\macpdevsrp01\Builds\QA\UFT\CHFramework_Hybrid\Orpheus\TestScripts\BVT Orpheus 1051.3529]]></DocLocation></General>
+<Doc rID="T1"   productName= "Micro Focus Unified Functional Testing"  >
+<DName><![CDATA[BVT Orpheus 1051.3529]]></DName>
+<Res><![CDATA[Report]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="89" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xlsx]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Action rID="T4">
+<AName><![CDATA[Action1]]></AName>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[LoadFunctionLibrary]]></Obj>
+<Details plainTxt="False" ><![CDATA[LoadFunctionLibrary function passed]]></Details>
+<Time><![CDATA[7/28/2021 - 12:59:34]]></Time>
+<TimeTick>1627491574</TimeTick>
+<NodeArgs eType="Replay" icon="92" nRep="8" status="Passed" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[LoadFunctionLibrary]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T6">
+<Obj ><![CDATA[<RunTest>]]></Obj>
+<Details ><![CDATA[SCRIPT-START]]></Details>
+<Time><![CDATA[7/28/2021 - 12:59:35]]></Time>
+<TimeTick>1627491575</TimeTick>
+<NodeArgs eType="User" icon="93" nRep="9" >
+<Disp><![CDATA[<RunTest>]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T7">
+<Obj ><![CDATA[Verify User Login]]></Obj>
+<Details ><![CDATA[User':Imran Khan Lodhi Mohammad (MOHAMMI1)' Login Successful]]></Details>
+<Time><![CDATA[7/28/2021 - 12:59:53]]></Time>
+<TimeTick>1627491593</TimeTick>
+<NodeArgs eType="User" icon="93" nRep="23" status="Passed" >
+<Disp><![CDATA[Verify User Login]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T8">
+<Obj ><![CDATA[<ClickObject/>:Click on 'Link']]></Obj>
+<Details ><![CDATA[ Link[innertext:Orpheus,html tag:A] Clicked Successfully]]></Details>
+<Time><![CDATA[7/28/2021 - 12:59:56]]></Time>
+<TimeTick>1627491596</TimeTick>
+<NodeArgs eType="User" icon="93" nRep="36" status="Passed" >
+<Disp><![CDATA[<ClickObject/>:Click on 'Link']]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T9">
+<Obj ><![CDATA[Check all child nodes under:'Orpheus']]></Obj>
+<Details ><![CDATA[Sub Node:'Intercompany Rate' found]]></Details>
+<Time><![CDATA[7/28/2021 - 12:59:59]]></Time>
+<TimeTick>1627491599</TimeTick>
+<NodeArgs eType="User" icon="93" nRep="39" status="Passed" >
+<Disp><![CDATA[Check all child nodes under:'Orpheus']]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T10">
+<Obj ><![CDATA[Check all child nodes under:'Orpheus']]></Obj>
+<Details ><![CDATA[Sub Node:'Orpheus' found]]></Details>
+<Time><![CDATA[7/28/2021 - 12:59:59]]></Time>
+<TimeTick>1627491599</TimeTick>
+<NodeArgs eType="User" icon="93" nRep="40" status="Passed" >
+<Disp><![CDATA[Check all child nodes under:'Orpheus']]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T11">
+<Obj ><![CDATA[Check all child nodes under:'Orpheus']]></Obj>
+<Details ><![CDATA[Sub Node:'Orpheus Setup' found]]></Details>
+<Time><![CDATA[7/28/2021 - 12:59:59]]></Time>
+<TimeTick>1627491599</TimeTick>
+<NodeArgs eType="User" icon="93" nRep="41" status="Passed" >
+<Disp><![CDATA[Check all child nodes under:'Orpheus']]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T12">
+<Obj ><![CDATA[<ClickObject/>:Click on 'Logout']]></Obj>
+<Details ><![CDATA[ Logout: Clicked Successfully]]></Details>
+<Time><![CDATA[7/28/2021 - 13:00:01]]></Time>
+<TimeTick>1627491601</TimeTick>
+<NodeArgs eType="User" icon="93" nRep="49" status="Passed" >
+<Disp><![CDATA[<ClickObject/>:Click on 'Logout']]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T13">
+<Obj ><![CDATA[Click on Logout Link and Verify Successful Application Logout]]></Obj>
+<Details ><![CDATA[Logout Successful]]></Details>
+<Time><![CDATA[7/28/2021 - 13:00:02]]></Time>
+<TimeTick>1627491602</TimeTick>
+<NodeArgs eType="User" icon="93" nRep="56" status="Passed" >
+<Disp><![CDATA[Click on Logout Link and Verify Successful Application Logout]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="7/28/2021 - 12:59:33" eTime="7/28/2021 - 13:00:03" passed="8" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="91" nRep="7" status="Passed" >
+<Disp><![CDATA[Action1 Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="90" nRep="6" status="Passed" >
+<Disp><![CDATA[BVT Orpheus 1051.3529 Iteration 1 (Row 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<Summary sTime="7/28/2021 - 12:59:21" eTime="7/28/2021 - 13:00:03" passed="8" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartTest" icon="88" nRep="3" status="Passed" >
+<Disp><![CDATA[Test BVT Orpheus 1051.3529 Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>

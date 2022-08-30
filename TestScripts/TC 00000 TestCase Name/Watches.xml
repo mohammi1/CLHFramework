@@ -1,0 +1,4 @@
+﻿<Properties>
+  <WatchEntry0 value="Environment(&quot;fridFrameCRM&quot;)" />
+  <WatchEntry1 value="strIntegrationExcelFilePath" />
+</Properties>
