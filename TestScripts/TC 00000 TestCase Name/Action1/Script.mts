@@ -4,7 +4,7 @@
 'Date									- 
 '##############################################################################################################################################
 Reporter.ReportEvent micPass,"Checking","Pass"
-Reporter.ReportEvent micPass,"Checking","Pass"
+Reporter.ReportEvent micFail,"Checking","Fail"
 
 
 
